@@ -1,6 +1,6 @@
 # Jô-Lê — Clube de histórias
 
-Base inicial de um site estático em português, com página de apresentação provisória e layout responsivo.
+Base inicial de um site estático em português, com página provisória e layout responsivo.
 
 ## Estrutura
 - public/index.html: página inicial, estilos e favicon.
@@ -12,10 +12,13 @@ Com Node.js instalado, execute `npx wrangler dev` para iniciar o servidor local.
 Para publicar na conta autenticada da Cloudflare, execute `npx wrangler deploy`.
 Documentação: https://developers.cloudflare.com/workers/static-assets/
 
-## Configuração externa pendente
-- Criar o repositório GitHub jo-le-clube-de-historias na conta do proprietário.
-- Vincular o repositório local ao remoto e enviar o primeiro commit.
-- Criar e publicar o projeto na Cloudflare; configurar publicação automática pelo GitHub se disponível.
+## Repositório
+https://github.com/lucasmoraiszaroni/jo-le-clube-de-historias
+
+Repositório privado, com branch principal main.
+
+## Próximas etapas
+- Concluir a publicação na Cloudflare e conectar a publicação automática ao GitHub.
 - Definir conteúdo final e domínio com o proprietário.
 
 Nenhuma credencial deve ser incluída no repositório.
