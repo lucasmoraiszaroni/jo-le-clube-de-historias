@@ -18,7 +18,9 @@ https://github.com/lucasmoraiszaroni/jo-le-clube-de-historias
 Repositório privado, com branch principal main.
 
 ## Próximas etapas
-- Concluir a publicação na Cloudflare e conectar a publicação automática ao GitHub.
+- Site publicado: https://jo-le-clube-de-historias.cinepista.workers.dev
+- Cloudflare Workers conectada ao repositório GitHub para publicação automática.
 - Definir conteúdo final e domínio com o proprietário.
 
 Nenhuma credencial deve ser incluída no repositório.
+
