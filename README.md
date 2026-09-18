@@ -4,6 +4,7 @@ Base inicial de um site estático em português, com página provisória e layou
 
 ## Estrutura
 - dist/index.html: página principal, estilos, interações e favicon.
+- dist/content.js: links, agenda, livros e produtos editáveis sem alterar o layout.
 - dist/assets/: imagens usadas pelo site.
 - wrangler.jsonc: configuração de publicação na Cloudflare Workers com Static Assets.
 

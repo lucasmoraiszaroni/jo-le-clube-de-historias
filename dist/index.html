@@ -4,418 +4,221 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jô-Lê — histórias, livros, vídeos, contações, palestras, cursos e oficinas para crianças de todas as idades.">
-  <meta name="theme-color" content="#3d1978">
-  <title>Jô-Lê — Clube de histórias</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233d1978'/%3E%3Cpath d='M17 39c7-2 12 0 15 5 3-5 8-7 15-5V20c-7-2-12 0-15 5-3-5-8-7-15-5v19Z' fill='%23ffd83d'/%3E%3Cpath d='M32 25v19' stroke='%233d1978' stroke-width='3'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#f1dfb8">
+  <title>Jô-Lê · Clube de histórias</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23f1dfb8'/%3E%3Cpath d='m32 12 4.6 12.4L50 25l-10.5 8.3L43 46l-11-7.4L21 46l3.5-12.7L14 25l13.4-.6L32 12Z' fill='%23cc6045'/%3E%3C/svg%3E">
+  <script src="content.js"></script>
   <style>
     :root {
-      --purple: #3d1978;
-      --purple-dark: #28104f;
-      --yellow: #ffd83d;
-      --tomato: #f04a2f;
-      --blue: #287fc1;
-      --cream: #fff8e8;
-      --ink: #21162d;
-      --white: #ffffff;
+      --paper: #f1dfb8;
+      --paper-light: #fbf4e4;
+      --navy: #15344f;
+      --navy-dark: #0c273d;
+      --terracotta: #c95d43;
+      --mustard: #d6a53a;
+      --blue: #39739a;
+      --lilac: #765894;
+      --rose: #cf8b7c;
+      --ink: #17232b;
+      --white: #fffdf7;
+      --line: rgba(23, 35, 43, .2);
+      --sans: "Arial Narrow", "Aptos Narrow", "Roboto Condensed", Arial, sans-serif;
+      --body: "Aptos", "Trebuchet MS", Arial, sans-serif;
       --serif: Georgia, "Times New Roman", serif;
-      --sans: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif;
-      --body: Arial, Helvetica, sans-serif;
-      --page: min(1180px, calc(100% - 40px));
+      --page: min(1160px, calc(100% - 48px));
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--cream);
-      font-family: var(--body);
-      font-size: 1rem;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font: 1rem/1.65 var(--body); }
     body.menu-open { overflow: hidden; }
     a { color: inherit; }
-    img { display: block; max-width: 100%; }
-    button, a { -webkit-tap-highlight-color: transparent; }
     button { font: inherit; }
-    ::selection { background: var(--yellow); color: var(--purple-dark); }
+    ::selection { background: var(--mustard); color: var(--navy-dark); }
+    :focus-visible { outline: 3px solid var(--terracotta); outline-offset: 4px; }
 
-    .skip-link {
-      position: fixed;
-      z-index: 1000;
-      top: 12px;
-      left: 12px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: var(--yellow);
-      color: var(--purple-dark);
-      font-weight: 800;
-      transform: translateY(-160%);
-      transition: transform .2s ease;
-    }
-    .skip-link:focus { transform: translateY(0); }
+    .skip-link { position: fixed; z-index: 1000; top: 10px; left: 10px; padding: 10px 16px; background: var(--navy); color: var(--white); transform: translateY(-160%); }
+    .skip-link:focus { transform: none; }
+    .container { width: var(--page); margin: 0 auto; }
 
-    .site-header {
-      position: fixed;
-      z-index: 100;
-      top: 0;
-      left: 0;
-      width: 100%;
-      border-bottom: 1px solid rgba(255, 255, 255, .14);
-      background: rgba(61, 25, 120, .92);
-      color: var(--white);
-      backdrop-filter: blur(14px);
-    }
-    .nav-wrap {
-      width: var(--page);
-      min-height: 72px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 9px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .brand-name {
-      color: var(--yellow);
-      font-family: var(--serif);
-      font-size: 2rem;
-      font-style: italic;
-      font-weight: 800;
-      letter-spacing: -.06em;
-      line-height: 1;
-    }
-    .brand-label {
-      font-family: var(--sans);
-      font-size: .68rem;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-    .site-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
-    .site-nav a {
-      position: relative;
-      padding: 25px 0 22px;
-      font-family: var(--sans);
-      font-size: .84rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .site-nav a::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 16px;
-      left: 0;
-      height: 3px;
-      border-radius: 99px;
-      background: var(--yellow);
-      transform: scaleX(0);
-      transition: transform .2s ease;
-    }
-    .site-nav a:hover::after,
-    .site-nav a:focus-visible::after,
-    .site-nav a[aria-current="true"]::after { transform: scaleX(1); }
-    .menu-toggle {
-      display: none;
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(255, 255, 255, .35);
-      border-radius: 50%;
-      background: transparent;
-      color: var(--white);
-      cursor: pointer;
-    }
-    .menu-toggle span,
-    .menu-toggle::before,
-    .menu-toggle::after {
-      content: "";
-      display: block;
-      width: 20px;
-      height: 2px;
-      margin: 4px auto;
-      border-radius: 2px;
-      background: currentColor;
-      transition: transform .2s ease, opacity .2s ease;
-    }
+    .site-header { position: fixed; z-index: 100; inset: 0 0 auto; border-bottom: 1px solid var(--line); background: rgba(241, 223, 184, .96); backdrop-filter: blur(10px); }
+    .nav-wrap { width: var(--page); min-height: 76px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; white-space: nowrap; }
+    .brand strong { color: var(--terracotta); font: 800 1.9rem/.9 var(--sans); letter-spacing: -.06em; text-transform: uppercase; }
+    .brand span { color: var(--navy); font: 700 .66rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; }
+    .site-nav { display: flex; align-items: center; gap: clamp(12px, 1.8vw, 25px); }
+    .site-nav a { padding: 27px 0 22px; border-bottom: 3px solid transparent; font: 700 .78rem/1 var(--sans); letter-spacing: .03em; text-decoration: none; text-transform: uppercase; }
+    .site-nav a:hover, .site-nav a[aria-current="true"] { border-color: var(--terracotta); }
+    .menu-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid var(--navy); border-radius: 50%; background: transparent; color: var(--navy); cursor: pointer; }
+    .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 19px; height: 2px; margin: 4px auto; background: currentColor; transition: transform .2s ease, opacity .2s ease; }
     .menu-toggle[aria-expanded="true"] span { opacity: 0; }
     .menu-toggle[aria-expanded="true"]::before { transform: translateY(6px) rotate(45deg); }
     .menu-toggle[aria-expanded="true"]::after { transform: translateY(-6px) rotate(-45deg); }
 
-    .hero {
-      position: relative;
-      min-height: min(860px, 100svh);
-      padding: 132px 0 64px;
-      display: grid;
-      align-items: center;
-      background: var(--purple);
-      color: var(--white);
-      isolation: isolate;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "era uma vez";
-      position: absolute;
-      z-index: -1;
-      top: 82px;
-      right: -20px;
-      color: rgba(255, 255, 255, .055);
-      font-family: var(--serif);
-      font-size: clamp(6rem, 16vw, 14rem);
-      font-style: italic;
-      font-weight: 800;
-      line-height: .8;
-      white-space: nowrap;
-      transform: rotate(-5deg);
-    }
-    .hero-inner {
-      width: var(--page);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, .88fr) minmax(420px, 1.12fr);
-      align-items: center;
-      gap: clamp(36px, 6vw, 90px);
-    }
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 20px;
-      font-family: var(--sans);
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .17em;
-      text-transform: uppercase;
-    }
-    .eyebrow::before { content: "✦"; color: var(--yellow); font-size: 1.1rem; }
-    .hero h1 {
-      max-width: 9ch;
-      margin: 0;
-      font-family: var(--serif);
-      font-size: clamp(4.2rem, 8.2vw, 8.6rem);
-      font-weight: 400;
-      letter-spacing: -.075em;
-      line-height: .84;
-    }
-    .hero h1 em { display: block; color: var(--yellow); font-weight: 700; }
-    .hero-copy {
-      max-width: 35rem;
-      margin: 28px 0 0;
-      color: #f0e9ff;
-      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-      line-height: 1.7;
-    }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-    .button {
-      display: inline-flex;
-      min-height: 52px;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px 22px;
-      border: 2px solid var(--yellow);
-      border-radius: 999px;
-      background: var(--yellow);
-      color: var(--purple-dark);
-      font-family: var(--sans);
-      font-size: .92rem;
-      font-weight: 800;
-      text-decoration: none;
-      transition: transform .2s ease, border-color .2s ease;
-    }
-    .button:hover { transform: translateY(-3px) rotate(-1deg); }
-    .button.secondary { background: transparent; color: var(--white); border-color: rgba(255, 255, 255, .45); }
-    .button.secondary:hover { border-color: var(--white); }
-    .button.dark { border-color: var(--purple); background: var(--purple); color: var(--white); }
-    .hero-art {
-      position: relative;
-      aspect-ratio: 1.12 / 1;
-      margin: 0;
-      transform: rotate(2deg);
-    }
-    .hero-art::before {
-      content: "";
-      position: absolute;
-      inset: -14px 18px 18px -14px;
-      border: 2px solid var(--yellow);
-      border-radius: 48% 52% 45% 55% / 55% 40% 60% 45%;
-      transform: rotate(-4deg);
-    }
-    .hero-art img {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 48% 52% 45% 55% / 55% 40% 60% 45%;
-      object-fit: cover;
-      box-shadow: 0 30px 70px rgba(20, 4, 45, .45);
-    }
-    .art-note {
-      position: absolute;
-      right: -14px;
-      bottom: 18px;
-      padding: 11px 16px;
-      border-radius: 10px;
-      background: var(--tomato);
-      color: var(--white);
-      font-family: var(--sans);
-      font-size: .82rem;
-      font-weight: 800;
-      transform: rotate(-5deg);
-      box-shadow: 6px 8px 0 var(--yellow);
-    }
+    .hero { min-height: 100svh; padding: 140px 0 76px; display: grid; align-items: center; border-bottom: 1px solid var(--line); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(340px, .88fr); gap: clamp(50px, 9vw, 130px); align-items: center; }
+    .kicker, .section-kicker { margin: 0 0 19px; color: var(--terracotta); font: 800 .76rem/1.2 var(--sans); letter-spacing: .19em; text-transform: uppercase; }
+    .hero h1 { max-width: 8ch; margin: 0; color: var(--navy); font: 900 clamp(5.2rem, 11.5vw, 10rem)/.78 var(--sans); letter-spacing: -.075em; text-transform: uppercase; }
+    .hero h1 span { display: block; margin-top: 25px; color: var(--ink); font: 500 clamp(1.15rem, 2.3vw, 2rem)/1.1 var(--serif); letter-spacing: .01em; text-transform: none; }
+    .hero-copy { max-width: 39rem; margin: 34px 0 0; font-size: clamp(1.08rem, 1.5vw, 1.28rem); }
+    .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .button { display: inline-flex; min-height: 48px; padding: 12px 20px; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--navy); border-radius: 999px; background: var(--navy); color: var(--white); font: 800 .78rem/1 var(--sans); letter-spacing: .07em; text-decoration: none; text-transform: uppercase; transition: background .2s ease, color .2s ease, transform .2s ease; }
+    .button:hover { transform: translateY(-2px); background: var(--terracotta); border-color: var(--terracotta); }
+    .button.outline { background: transparent; color: var(--navy); }
+    .button.outline:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .button.light { border-color: var(--paper-light); background: var(--paper-light); color: var(--navy); }
+    .button.light:hover { border-color: var(--mustard); background: var(--mustard); }
+    .button.is-disabled { border-color: currentColor; background: transparent; color: inherit; opacity: .48; cursor: default; pointer-events: none; }
 
-    .marquee { padding: 16px 0; overflow: hidden; background: var(--yellow); color: var(--purple-dark); border-block: 2px solid var(--ink); }
-    .marquee-track { width: max-content; display: flex; gap: 24px; font-family: var(--sans); font-size: .9rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; animation: parade 26s linear infinite; }
-    .marquee-track span::after { content: "✦"; margin-left: 24px; color: var(--tomato); }
-    @keyframes parade { to { transform: translateX(-50%); } }
+    .brand-stage { position: relative; min-height: 540px; display: grid; place-items: center; }
+    .brand-orbit { width: min(440px, 92%); aspect-ratio: 1; border: 1px solid var(--navy); border-radius: 50%; display: grid; place-items: center; text-align: center; }
+    .brand-orbit::before { content: ""; position: absolute; width: 78%; aspect-ratio: 1; border-radius: 50%; background: var(--mustard); opacity: .18; }
+    .brand-placeholder { position: relative; z-index: 1; max-width: 230px; }
+    .brand-placeholder strong { display: block; color: var(--navy); font: 900 1.4rem/1.15 var(--sans); text-transform: uppercase; }
+    .brand-placeholder span { display: block; margin-top: 10px; font-size: .92rem; }
+    .stage-mark { position: absolute; display: grid; place-items: center; color: var(--navy); font-family: var(--serif); }
+    .stage-mark.star { top: 7%; right: 10%; color: var(--terracotta); font-size: 3rem; }
+    .stage-mark.moon { bottom: 10%; left: 7%; width: 76px; height: 76px; border-radius: 50%; background: var(--navy); color: var(--paper); font-size: 2.5rem; }
+    .stage-mark.line { top: 24%; left: 1%; width: 82px; height: 1px; background: var(--terracotta); }
 
-    .section { padding: clamp(82px, 11vw, 150px) 0; }
-    .container { width: var(--page); margin: 0 auto; }
-    .section-head { display: grid; grid-template-columns: minmax(0, .85fr) minmax(280px, .45fr); gap: 40px; align-items: end; margin-bottom: 58px; }
-    .section-index { display: inline-block; margin-bottom: 14px; color: var(--tomato); font-family: var(--sans); font-size: .8rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
-    .section h2 { margin: 0; font-family: var(--serif); font-size: clamp(3rem, 7vw, 6.4rem); font-weight: 400; letter-spacing: -.055em; line-height: .93; }
-    .section h2 em { color: var(--purple); font-weight: 700; }
-    .section-lead { margin: 0; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.7; }
+    .word-strip { padding: 17px 0; border-bottom: 1px solid var(--line); background: var(--paper-light); overflow: hidden; }
+    .word-list { width: var(--page); margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; color: var(--navy); font: 800 .74rem/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+    .word-list span:not(:last-child)::after { content: "★"; margin-left: clamp(18px, 4vw, 54px); color: var(--mustard); }
 
-    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .story-card { position: relative; min-height: 360px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; border: 2px solid var(--ink); border-radius: 32px 12px 32px 12px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
-    .story-card:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: 8px 10px 0 var(--ink); }
-    .story-card:nth-child(1) { background: var(--tomato); color: var(--white); }
-    .story-card:nth-child(2) { background: var(--blue); color: var(--white); transform: translateY(26px) rotate(1deg); }
-    .story-card:nth-child(2):hover { transform: translateY(18px) rotate(0); }
-    .story-card:nth-child(3) { background: var(--yellow); color: var(--purple-dark); }
-    .story-icon { font-size: 3rem; line-height: 1; }
-    .story-card h3 { margin: 30px 0 10px; font-family: var(--serif); font-size: 2.4rem; line-height: 1; }
-    .story-card p { margin: 0; font-size: 1.05rem; }
-    .story-number { position: absolute; top: 22px; right: 26px; font-family: var(--serif); font-size: 4.7rem; font-style: italic; opacity: .2; line-height: 1; }
+    .section { padding: clamp(88px, 11vw, 150px) 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 48px; align-items: end; margin-bottom: 58px; }
+    .section h2 { max-width: 12ch; margin: 0; color: var(--navy); font: 900 clamp(3rem, 7vw, 6.2rem)/.87 var(--sans); letter-spacing: -.055em; text-transform: uppercase; }
+    .section-intro { margin: 0; font-size: 1.08rem; }
 
-    .about { background: var(--white); }
-    .about-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(42px, 8vw, 110px); align-items: start; }
-    .about-statement { position: sticky; top: 118px; padding-left: 24px; border-left: 8px solid var(--yellow); }
-    .about-statement p { margin: 24px 0 0; font-size: 1.14rem; }
-    .people { display: grid; gap: 20px; }
-    .person { padding: 34px; border: 2px solid var(--ink); border-radius: 12px 34px 12px 34px; background: var(--cream); }
-    .person:nth-child(2) { margin-left: 44px; background: #eaf5fb; }
-    .person-role { display: block; margin-bottom: 10px; color: var(--purple); font-family: var(--sans); font-size: .76rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
-    .person h3 { margin: 0 0 10px; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.6rem); line-height: 1; }
-    .person p { margin: 0; font-size: 1.06rem; }
+    .stories { background: var(--paper-light); }
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .story-card { min-height: 410px; padding: 30px; display: flex; flex-direction: column; border: 1px solid var(--line); background: var(--white); }
+    .story-card:nth-child(1) { border-top: 8px solid var(--terracotta); }
+    .story-card:nth-child(2) { border-top: 8px solid var(--blue); }
+    .story-card:nth-child(3) { border-top: 8px solid var(--lilac); }
+    .story-card .number { color: var(--mustard); font: 800 .8rem/1 var(--sans); letter-spacing: .12em; }
+    .story-card h3 { margin: auto 0 16px; color: var(--navy); font: 900 clamp(2rem, 3.4vw, 3.15rem)/.92 var(--sans); letter-spacing: -.04em; text-transform: uppercase; }
+    .story-card p { margin: 0 0 28px; }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .card-actions .button { min-height: 42px; padding: 10px 15px; font-size: .7rem; }
 
-    .live { position: relative; background: var(--purple); color: var(--white); overflow: hidden; }
-    .live::after { content: "✦"; position: absolute; right: -40px; bottom: -130px; color: rgba(255, 216, 61, .1); font-size: 26rem; line-height: 1; transform: rotate(12deg); }
-    .live .section-index { color: var(--yellow); }
-    .live .section-head { position: relative; z-index: 1; }
-    .live .section-lead { color: #e9ddff; }
-    .live h2 em { color: var(--yellow); }
-    .agenda { position: relative; z-index: 1; display: grid; grid-template-columns: 1.25fr .75fr; gap: 22px; }
-    .agenda-main { min-height: 330px; padding: clamp(30px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; border: 2px solid var(--yellow); border-radius: 40px 14px 40px 14px; background: rgba(255, 255, 255, .06); }
-    .agenda-label { color: var(--yellow); font-family: var(--sans); font-size: .8rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
-    .agenda-main h3 { max-width: 12ch; margin: 24px 0; font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.6rem); line-height: 1; }
-    .agenda-main p { max-width: 35rem; margin: 0; color: #e9ddff; font-size: 1.08rem; }
-    .agenda-types { display: grid; gap: 12px; }
-    .agenda-type { padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 18px; border: 1px solid rgba(255, 255, 255, .28); border-radius: 14px; background: rgba(255, 255, 255, .08); }
-    .agenda-type strong { font-family: var(--sans); font-size: 1rem; }
-    .agenda-type span { color: var(--yellow); font-size: 1.4rem; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .person-card { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: center; padding-top: 24px; border-top: 1px solid var(--navy); }
+    .photo-placeholder { aspect-ratio: 4 / 5; border: 1px dashed var(--navy); display: grid; place-items: center; background: rgba(57, 115, 154, .08); color: var(--navy); text-align: center; }
+    .photo-placeholder span { max-width: 100px; font: 700 .7rem/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+    .person-copy .role { color: var(--terracotta); font: 800 .72rem/1.35 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+    .person-copy h3 { margin: 10px 0 16px; color: var(--navy); font: 900 2rem/1 var(--sans); text-transform: uppercase; }
+    .person-copy p { margin: 0; }
+    .quintal-note { margin-top: 60px; padding: 34px 0; display: grid; grid-template-columns: .35fr 1fr; gap: 40px; border-block: 1px solid var(--line); }
+    .quintal-note strong { color: var(--lilac); font: 900 1.5rem/1 var(--sans); text-transform: uppercase; }
+    .quintal-note p { margin: 0; }
 
-    .books-layout { display: grid; grid-template-columns: .84fr 1.16fr; gap: clamp(36px, 8vw, 100px); align-items: center; }
-    .book-stack { position: relative; min-height: 440px; }
-    .book { position: absolute; width: min(330px, 70%); aspect-ratio: .74; padding: 28px; border: 3px solid var(--ink); border-radius: 7px 18px 18px 7px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 12px 14px 0 var(--ink); }
-    .book.one { z-index: 3; top: 0; left: 8%; background: var(--yellow); transform: rotate(-8deg); }
-    .book.two { z-index: 2; top: 16px; left: 22%; background: var(--tomato); color: var(--white); transform: rotate(4deg); }
-    .book.three { z-index: 1; top: 44px; left: 32%; background: var(--blue); color: var(--white); transform: rotate(13deg); }
-    .book-mark { font-size: 4rem; line-height: 1; }
-    .book-title { font-family: var(--serif); font-size: 2.2rem; font-style: italic; font-weight: 700; line-height: .95; }
-    .books-copy h2 { margin-bottom: 26px; }
-    .books-copy p { max-width: 32rem; margin: 0 0 28px; font-size: 1.13rem; }
+    .live { background: var(--navy); color: var(--paper-light); border-color: transparent; }
+    .live .section-kicker { color: var(--mustard); }
+    .live h2 { color: var(--paper-light); }
+    .agenda-list { display: grid; gap: 1px; background: rgba(241, 223, 184, .25); border: 1px solid rgba(241, 223, 184, .25); }
+    .event { padding: 26px; display: grid; grid-template-columns: 120px 1fr auto; gap: 28px; align-items: center; background: var(--navy); }
+    .event-date { color: var(--mustard); font: 900 1.2rem/1 var(--sans); }
+    .event h3 { margin: 0 0 6px; font: 800 1.25rem/1.2 var(--sans); text-transform: uppercase; }
+    .event p { margin: 0; color: #d9e2e8; }
+    .empty-agenda { min-height: 250px; padding: clamp(34px, 6vw, 70px); display: grid; grid-template-columns: 1fr auto; gap: 34px; align-items: end; border: 1px solid rgba(241, 223, 184, .5); }
+    .empty-agenda strong { display: block; max-width: 15ch; color: var(--paper-light); font: 900 clamp(2rem, 4vw, 3.7rem)/.95 var(--sans); text-transform: uppercase; }
+    .empty-agenda p { max-width: 32rem; margin: 18px 0 0; color: #d9e2e8; }
+    .empty-agenda .moon-sign { color: var(--mustard); font: 400 5rem/1 var(--serif); }
 
-    .shop { padding-top: 0; }
-    .shop-panel { position: relative; padding: clamp(42px, 8vw, 90px); display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 40px; border: 2px solid var(--ink); border-radius: 48px 16px 48px 16px; background: var(--yellow); overflow: hidden; box-shadow: 12px 14px 0 var(--ink); }
-    .shop-panel::after { content: "JÔ-LÊ"; position: absolute; right: -20px; bottom: -38px; color: rgba(61, 25, 120, .1); font-family: var(--serif); font-size: clamp(6rem, 16vw, 13rem); font-weight: 900; line-height: 1; }
-    .shop-panel > * { position: relative; z-index: 1; }
-    .shop-panel h2 { max-width: 9ch; font-size: clamp(3.2rem, 7vw, 6rem); }
-    .shop-panel h2 em { color: var(--tomato); }
-    .shop-panel p { max-width: 30rem; margin: 22px 0 0; font-size: 1.12rem; }
-    .coming-soon { justify-self: center; width: min(260px, 100%); aspect-ratio: 1; display: grid; place-items: center; border: 3px solid var(--purple-dark); border-radius: 50%; background: var(--purple); color: var(--white); font-family: var(--sans); font-size: clamp(1.5rem, 3vw, 2.4rem); font-weight: 900; line-height: 1.05; text-align: center; transform: rotate(7deg); box-shadow: 10px 12px 0 var(--tomato); }
+    .books { background: var(--paper-light); }
+    .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .book-card { min-width: 0; padding: 0 0 28px; border-bottom: 1px solid var(--navy); }
+    .cover-placeholder { aspect-ratio: 3 / 4; margin-bottom: 24px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; border: 1px dashed currentColor; background: var(--paper); color: var(--navy); }
+    .book-card:nth-child(2) .cover-placeholder { background: #dbe4de; color: var(--lilac); }
+    .book-card:nth-child(3) .cover-placeholder { background: #d8e4e8; color: var(--terracotta); }
+    .cover-placeholder span { font: 800 .7rem/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+    .cover-placeholder strong { max-width: 12ch; font: 900 1.45rem/1 var(--sans); text-transform: uppercase; }
+    .book-card h3 { margin: 0 0 12px; color: var(--navy); font: 900 1.45rem/1.05 var(--sans); text-transform: uppercase; }
+    .book-meta { margin: 0 0 7px; font-size: .82rem; }
+    .book-meta strong { color: var(--terracotta); text-transform: uppercase; }
+    .book-description { min-height: 78px; margin: 18px 0 22px; }
 
-    .contact { padding-bottom: 72px; background: var(--tomato); color: var(--white); }
-    .contact .section-index { color: var(--yellow); }
-    .contact h2 em { color: var(--yellow); }
-    .contact-layout { display: grid; grid-template-columns: 1fr .72fr; gap: clamp(40px, 9vw, 130px); align-items: end; }
-    .contact-copy > p { max-width: 38rem; margin: 26px 0 0; font-size: 1.18rem; }
-    .contact-card { padding: 30px; border: 2px solid var(--white); border-radius: 16px 36px 16px 36px; background: rgba(88, 12, 0, .16); }
-    .contact-card strong { display: block; margin-bottom: 9px; font-family: var(--sans); font-size: 1.18rem; }
-    .contact-card p { margin: 0; color: #fff2ed; }
-    .footer { width: var(--page); margin: 72px auto 0; padding-top: 22px; display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(255, 255, 255, .5); font-size: .84rem; }
+    .shop { background: var(--mustard); }
+    .shop .section-kicker { color: var(--navy); }
+    .shop-intro { max-width: 44rem; margin: 26px 0 0; font-size: 1.12rem; }
+    .products-grid { margin: 54px 0 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .product-card { min-height: 280px; padding: 24px; display: flex; align-items: flex-end; border: 1px dashed var(--navy); background: rgba(251, 244, 228, .42); color: var(--navy); }
+    .product-card:nth-child(2) { background: rgba(201, 93, 67, .12); }
+    .product-card:nth-child(3) { background: rgba(118, 88, 148, .12); }
+    .product-card strong { font: 800 .75rem/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+    .product-card h3 { margin: 10px 0 0; font: 900 1.45rem/1 var(--sans); text-transform: uppercase; }
 
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+    .contact { background: var(--terracotta); color: var(--white); border: 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr .7fr; gap: clamp(50px, 9vw, 130px); align-items: end; }
+    .contact .section-kicker { color: var(--paper); }
+    .contact h2 { max-width: 10ch; color: var(--white); }
+    .contact-copy { max-width: 40rem; margin: 26px 0 30px; font-size: 1.14rem; }
+    .service-list { margin: 0; padding: 0; display: grid; list-style: none; border-top: 1px solid rgba(255, 255, 255, .5); }
+    .service-list li { padding: 13px 0; border-bottom: 1px solid rgba(255, 255, 255, .5); font: 800 .82rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+    .socials { margin-top: 60px; display: flex; flex-wrap: wrap; gap: 9px; }
+    .socials .button { border-color: var(--white); background: transparent; }
+    .socials .button:hover { background: var(--white); color: var(--terracotta); }
+    .footer { padding: 28px 0; background: var(--navy-dark); color: var(--paper); }
+    .footer-inner { width: var(--page); margin: 0 auto; display: flex; justify-content: space-between; gap: 28px; font-size: .8rem; }
 
-    @media (max-width: 920px) {
-      :root { --page: min(100% - 32px, 720px); }
+    @media (max-width: 980px) {
+      :root { --page: min(100% - 32px, 760px); }
       .menu-toggle { display: block; }
-      .site-nav { position: fixed; inset: 72px 0 auto 0; max-height: calc(100svh - 72px); padding: 28px 20px 40px; display: grid; gap: 0; overflow-y: auto; background: var(--purple-dark); transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform .28s ease, opacity .2s ease; }
-      .site-nav.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-      .site-nav a { padding: 14px 4px; border-bottom: 1px solid rgba(255, 255, 255, .15); font-family: var(--serif); font-size: 1.8rem; }
-      .site-nav a::after { display: none; }
-      .hero { padding-top: 120px; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-copy { max-width: 42rem; }
-      .hero-art { width: min(660px, 94%); margin: 12px auto 0; aspect-ratio: 1.35; }
-      .section-head { grid-template-columns: 1fr; }
+      .site-nav { position: fixed; inset: 76px 0 auto; max-height: calc(100svh - 76px); padding: 22px 24px 36px; display: grid; gap: 0; overflow-y: auto; background: var(--paper-light); border-bottom: 1px solid var(--line); transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform .25s ease, opacity .2s ease; }
+      .site-nav.open { transform: none; opacity: 1; pointer-events: auto; }
+      .site-nav a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+      .hero { min-height: auto; }
+      .hero-grid, .section-head, .contact-grid { grid-template-columns: 1fr; }
+      .brand-stage { min-height: 430px; }
       .story-grid { grid-template-columns: 1fr; }
-      .story-card { min-height: 260px; }
-      .story-card:nth-child(2) { transform: none; }
-      .story-card:nth-child(2):hover { transform: translateY(-8px) rotate(-1deg); }
-      .about-layout { grid-template-columns: 1fr; }
-      .about-statement { position: static; }
-      .agenda, .books-layout, .shop-panel, .contact-layout { grid-template-columns: 1fr; }
-      .book-stack { min-height: 420px; width: min(560px, 100%); margin: 10px auto 0; }
-      .shop-panel { text-align: left; }
+      .story-card { min-height: 300px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .books-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 620px) {
       :root { --page: calc(100% - 24px); }
-      html { scroll-padding-top: 68px; }
-      .nav-wrap { min-height: 68px; }
-      .brand-label { display: none; }
-      .hero { min-height: auto; padding: 112px 0 72px; }
-      .hero h1 { font-size: clamp(3.6rem, 19vw, 5.4rem); }
-      .hero-actions { align-items: stretch; flex-direction: column; }
-      .button { width: 100%; }
-      .hero-art { width: 93%; aspect-ratio: 1; }
-      .art-note { right: -5px; bottom: 5px; }
+      .brand span { display: none; }
+      .hero { padding: 118px 0 68px; }
+      .hero h1 { font-size: clamp(4.1rem, 24vw, 6rem); }
+      .hero-copy { margin-top: 26px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .brand-stage { min-height: 340px; }
+      .brand-orbit { width: min(310px, 88%); }
+      .stage-mark.star { right: 2%; }
+      .stage-mark.moon { left: 1%; width: 62px; height: 62px; }
+      .word-list { width: max-content; padding-inline: 16px; }
+      .word-list span:not(:last-child)::after { margin-left: 18px; }
       .section { padding: 76px 0; }
-      .section-head { margin-bottom: 38px; }
-      .section h2 { font-size: clamp(2.8rem, 15vw, 4rem); }
-      .story-card, .person, .agenda-main, .contact-card { padding: 26px; }
-      .person:nth-child(2) { margin-left: 0; }
-      .agenda-main h3 { font-size: 2.6rem; }
-      .book-stack { min-height: 340px; }
-      .book { width: 68%; padding: 20px; box-shadow: 8px 9px 0 var(--ink); }
-      .book-title { font-size: 1.55rem; }
-      .shop-panel { padding: 38px 24px 48px; border-radius: 28px 10px 28px 10px; box-shadow: 8px 9px 0 var(--ink); }
-      .coming-soon { width: 190px; }
-      .footer { align-items: flex-start; flex-direction: column; margin-top: 54px; }
+      .section-head { gap: 28px; margin-bottom: 40px; }
+      .section h2 { font-size: clamp(2.9rem, 16vw, 4.1rem); }
+      .person-card { grid-template-columns: 110px 1fr; gap: 18px; }
+      .person-copy h3 { font-size: 1.55rem; }
+      .quintal-note { grid-template-columns: 1fr; gap: 14px; }
+      .empty-agenda { grid-template-columns: 1fr; }
+      .empty-agenda .moon-sign { display: none; }
+      .event { grid-template-columns: 1fr; gap: 12px; }
+      .books-grid, .products-grid { grid-template-columns: 1fr; }
+      .book-description { min-height: 0; }
+      .product-card { min-height: 210px; }
+      .footer-inner { flex-direction: column; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="#inicio" aria-label="Jô-Lê — início"><span class="brand-name">Jô-Lê</span><span class="brand-label">Clube de histórias</span></a>
+      <a class="brand" href="#inicio" aria-label="Jô-Lê — início"><strong>Jô-Lê</strong><span>Clube de histórias</span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><span></span></button>
       <nav class="site-nav" id="menu-principal" aria-label="Menu principal">
         <a href="#inicio">Início</a><a href="#historias">Histórias</a><a href="#quem-somos">Quem Somos</a><a href="#ao-vivo">Ao Vivo</a><a href="#livros">Livros</a><a href="#lojinha">Lojinha</a><a href="#contato">Contato</a>
@@ -425,85 +228,130 @@
 
   <main id="conteudo">
     <section class="hero" id="inicio" aria-labelledby="titulo-inicio">
-      <div class="hero-inner">
-        <div class="hero-content reveal">
-          <p class="eyebrow">Clube de histórias</p>
-          <h1 id="titulo-inicio">Histórias para <em>ver, ouvir e viver.</em></h1>
-          <p class="hero-copy">Livros, vídeos, contações, palestras, cursos e oficinas para crianças de todas as idades — e para quem nunca perdeu a vontade de imaginar.</p>
-          <div class="hero-actions"><a class="button" href="#ao-vivo">Onde encontrar o Jô-Lê <span aria-hidden="true">↓</span></a><a class="button secondary" href="#historias">Conhecer as histórias</a></div>
+      <div class="container hero-grid">
+        <div>
+          <p class="kicker">Histórias alimentam</p>
+          <h1 id="titulo-inicio">Jô-Lê<span>Clube de histórias</span></h1>
+          <p class="hero-copy">Histórias, livros, vídeos, contações, palestras, cursos e oficinas para crianças de todas as idades.</p>
+          <div class="hero-actions"><a class="button" href="#ao-vivo">Onde encontrar o Jô-Lê</a><a class="button outline" href="#historias">Ver e ouvir histórias</a></div>
         </div>
-        <figure class="hero-art reveal">
-          <img src="assets/universo-jole.png" alt="Livro aberto de onde surgem estrelas, animais, plantas e paisagens imaginárias">
-          <figcaption class="art-note">Toda história abre um mundo.</figcaption>
-        </figure>
+        <div class="brand-stage" aria-label="Espaço reservado para a identidade visual oficial">
+          <div class="brand-orbit"><div class="brand-placeholder"><strong>Jojô, Lelê e Tinteiro</strong><span>A ilustração oficial entra aqui.</span></div></div>
+          <span class="stage-mark star" aria-hidden="true">★</span><span class="stage-mark moon" aria-hidden="true">☾</span><span class="stage-mark line" aria-hidden="true"></span>
+        </div>
       </div>
     </section>
 
-    <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Contações</span><span>Livros</span><span>Vídeos</span><span>Palestras</span><span>Cursos</span><span>Oficinas</span><span>Contações</span><span>Livros</span><span>Vídeos</span><span>Palestras</span><span>Cursos</span><span>Oficinas</span></div></div>
+    <div class="word-strip" aria-hidden="true"><div class="word-list"><span>Contações</span><span>Livros</span><span>Vídeos</span><span>Palestras</span><span>Cursos</span><span>Oficinas</span></div></div>
 
-    <section class="section" id="historias" aria-labelledby="titulo-historias">
+    <section class="section stories" id="historias" aria-labelledby="titulo-historias">
       <div class="container">
-        <div class="section-head reveal"><div><span class="section-index">01 · Histórias</span><h2 id="titulo-historias">Cada história encontra um jeito de <em>ganhar vida.</em></h2></div><p class="section-lead">No Jô-Lê, a palavra pula da página, ocupa a roda e convida todo mundo a participar.</p></div>
+        <div class="section-head"><div><p class="section-kicker">01 · Histórias</p><h2 id="titulo-historias">Um canal, três jeitos de contar.</h2></div><p class="section-intro">No canal do Jô-Lê no YouTube, cada playlist abre uma porta diferente para ouvir, assistir e compartilhar histórias.</p></div>
         <div class="story-grid">
-          <article class="story-card reveal"><span class="story-number" aria-hidden="true">01</span><span class="story-icon" aria-hidden="true">◉</span><div><h3>Para assistir</h3><p>Vídeos e histórias contadas para ver quando quiser.</p></div></article>
-          <article class="story-card reveal"><span class="story-number" aria-hidden="true">02</span><span class="story-icon" aria-hidden="true">◖</span><div><h3>Para ouvir</h3><p>Contações que aproximam vozes, gestos e imaginação.</p></div></article>
-          <article class="story-card reveal"><span class="story-number" aria-hidden="true">03</span><span class="story-icon" aria-hidden="true">✦</span><div><h3>Para criar junto</h3><p>Cursos e oficinas em que cada pessoa entra na história.</p></div></article>
+          <article class="story-card"><span class="number">PLAYLIST · 01</span><h3>Jô-Lê Conta</h3><p>Histórias narradas em áudio, acompanhadas por ilustrações.</p><div class="card-actions" data-actions="playlistConta" data-labels="YouTube"></div></article>
+          <article class="story-card"><span class="number">PLAYLIST · 02</span><h3>Jô-Lê Lê</h3><p>Vídeos de Helena e Jonathan lendo um livro juntos.</p><div class="card-actions" data-actions="playlistLe" data-labels="YouTube"></div></article>
+          <article class="story-card"><span class="number">PLAYLIST · 03</span><h3>Hora da Naninha</h3><p>Histórias narradas em áudio, acompanhadas por uma imagem parada.</p><div class="card-actions" data-actions="playlistNaninhaYoutube,playlistNaninhaSpotify" data-labels="YouTube,Spotify"></div></article>
         </div>
       </div>
     </section>
 
-    <section class="section about" id="quem-somos" aria-labelledby="titulo-quem-somos">
-      <div class="container about-layout">
-        <div class="about-statement reveal"><span class="section-index">02 · Quem Somos</span><h2 id="titulo-quem-somos">Gente que faz da palavra um <em>encontro.</em></h2><p>O Jô-Lê é um projeto que aproxima literatura, oralidade e presença para compartilhar histórias com crianças de todas as idades.</p></div>
-        <div class="people">
-          <article class="person reveal"><span class="person-role">Criação e direção</span><h3>Helena Ritto</h3><p>Criadora e diretora do Jô-Lê — Clube de histórias.</p></article>
-          <article class="person reveal"><span class="person-role">Parceria artística</span><h3>Jonathan Faria</h3><p>Parceiro artístico do projeto e das histórias que ele coloca no mundo.</p></article>
+    <section class="section" id="quem-somos" aria-labelledby="titulo-quem-somos">
+      <div class="container">
+        <div class="section-head"><div><p class="section-kicker">02 · Quem Somos</p><h2 id="titulo-quem-somos">Artistas que trabalham para a infância.</h2></div><p class="section-intro">O Jô-Lê é criado e dirigido por Helena Ritto, em parceria artística com Jonathan Faria.</p></div>
+        <div class="about-grid">
+          <article class="person-card"><div class="photo-placeholder" aria-label="Espaço para foto de Helena Ritto"><span>Foto da Helena</span></div><div class="person-copy"><span class="role">Criadora e diretora criativa do Jô-Lê</span><h3>Helena Ritto</h3><p>Atriz, escritora, ilustradora, contadora de histórias e arte-educadora.</p></div></article>
+          <article class="person-card"><div class="photo-placeholder" aria-label="Espaço para foto de Jonathan Faria"><span>Foto do Jonathan</span></div><div class="person-copy"><span class="role">Parceiro artístico, intérprete e ilustrador</span><h3>Jonathan Faria</h3><p>Ator, dublador, narrador de audiolivros, ilustrador e arte-educador.</p></div></article>
         </div>
+        <div class="quintal-note"><strong>O Quintal</strong><p>Este espaço está preparado para receber as fotos e a história do Quintal, além dos registros de contações, palestras e oficinas.</p></div>
       </div>
     </section>
 
     <section class="section live" id="ao-vivo" aria-labelledby="titulo-ao-vivo">
       <div class="container">
-        <div class="section-head reveal"><div><span class="section-index">03 · Ao Vivo</span><h2 id="titulo-ao-vivo">A história fica ainda melhor quando a gente se encontra <em>ao vivo.</em></h2></div><p class="section-lead">É aqui que você vai encontrar os próximos lugares, dias e horários para viver uma história com o Jô-Lê.</p></div>
-        <div class="agenda reveal">
-          <article class="agenda-main"><span class="agenda-label">Próximos encontros</span><div><h3>A agenda está abrindo um novo capítulo.</h3><p>As próximas datas serão publicadas aqui assim que estiverem confirmadas.</p></div></article>
-          <div class="agenda-types" aria-label="Atividades do Jô-Lê"><div class="agenda-type"><strong>Contações de histórias</strong><span aria-hidden="true">✦</span></div><div class="agenda-type"><strong>Palestras</strong><span aria-hidden="true">✦</span></div><div class="agenda-type"><strong>Cursos</strong><span aria-hidden="true">✦</span></div><div class="agenda-type"><strong>Oficinas</strong><span aria-hidden="true">✦</span></div></div>
-        </div>
+        <div class="section-head"><div><p class="section-kicker">03 · Ao Vivo</p><h2 id="titulo-ao-vivo">Onde encontrar nossas histórias.</h2></div><p class="section-intro">Próximas contações, palestras, cursos e oficinas do Jô-Lê.</p></div>
+        <div class="agenda-list" id="agenda-list"></div>
       </div>
     </section>
 
-    <section class="section" id="livros" aria-labelledby="titulo-livros">
-      <div class="container books-layout">
-        <div class="book-stack reveal" aria-hidden="true"><div class="book one"><span class="book-mark">☼</span><span class="book-title">Jô-Lê</span></div><div class="book two"><span class="book-mark">✦</span><span class="book-title">Clube de histórias</span></div><div class="book three"><span class="book-mark">☾</span><span class="book-title">Em breve</span></div></div>
-        <div class="books-copy reveal"><span class="section-index">04 · Livros</span><h2 id="titulo-livros">Histórias para levar <em>com você.</em></h2><p>Os livros do Jô-Lê também vão morar por aqui. Em breve, esta estante ganha capas, páginas e todos os detalhes.</p><a class="button dark" href="#contato">Acompanhar as novidades <span aria-hidden="true">↓</span></a></div>
+    <section class="section books" id="livros" aria-labelledby="titulo-livros">
+      <div class="container">
+        <div class="section-head"><div><p class="section-kicker">04 · Livros</p><h2 id="titulo-livros">Histórias para levar com você.</h2></div><p class="section-intro">Livros autorais do Jô-Lê. A compra acontece diretamente no site da editora ou na plataforma indicada.</p></div>
+        <div class="books-grid" id="books-grid"></div>
       </div>
     </section>
 
     <section class="section shop" id="lojinha" aria-labelledby="titulo-lojinha">
-      <div class="container"><div class="shop-panel reveal"><div><span class="section-index">05 · Lojinha</span><h2 id="titulo-lojinha">Um cantinho para a história <em>continuar.</em></h2><p>A lojinha do Jô-Lê está sendo preparada. Quando abrir, você vai encontrar por aqui tudo o que estiver disponível.</p></div><div class="coming-soon" aria-label="Em breve">em<br>breve!</div></div></div>
+      <div class="container">
+        <p class="section-kicker">05 · Lojinha Jô-Lê</p><h2 id="titulo-lojinha">Um pedaço do nosso universo para levar para casa.</h2>
+        <p class="shop-intro">Os produtos aparecem aqui para você conhecer. Pagamento, carrinho, estoque e frete ficam por conta da plataforma de vendas.</p>
+        <div class="products-grid" id="products-grid"></div>
+        <div id="shop-action"></div>
+      </div>
     </section>
 
     <section class="section contact" id="contato" aria-labelledby="titulo-contato">
       <div class="container">
-        <div class="contact-layout reveal"><div class="contact-copy"><span class="section-index">06 · Contato</span><h2 id="titulo-contato">Vamos inventar o próximo <em>encontro?</em></h2><p>Convites para contações, palestras, cursos e oficinas serão recebidos pelos canais oficiais do Jô-Lê, que estarão disponíveis aqui em breve.</p></div><aside class="contact-card"><strong>Quer falar com o Jô-Lê?</strong><p>Estamos organizando os canais de contato. Volte em breve para conversar com a gente.</p></aside></div>
-        <footer class="footer"><span>Jô-Lê — Clube de histórias</span><span>Criação e direção: Helena Ritto · Parceria artística: Jonathan Faria</span></footer>
+        <div class="contact-grid">
+          <div><p class="section-kicker">06 · Contato</p><h2 id="titulo-contato">Quer levar a gente para o seu evento?</h2><p class="contact-copy">Para escolas, eventos, cidades e projetos culturais. Fale com o Jô-Lê sobre uma proposta profissional.</p><div id="contact-action"></div></div>
+          <ul class="service-list"><li>Contação de histórias</li><li>Palestras</li><li>Mediação de leitura</li><li>Oficinas e cursos</li><li>Mestres de cerimônia</li><li>Livros e projetos especiais</li></ul>
+        </div>
+        <div class="socials" id="social-links" aria-label="Redes sociais do Jô-Lê"></div>
       </div>
     </section>
   </main>
 
+  <footer class="footer"><div class="footer-inner"><strong>Jô-Lê · Clube de histórias</strong><span>Helena Ritto + Jonathan Faria</span></div></footer>
+
   <script>
+    const content = window.JOLE_CONTENT || { links: {}, agenda: [], livros: [], produtos: [] };
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char]);
+    const externalButton = (label, url, extraClass = '') => url
+      ? `<a class="button ${extraClass}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)} <span aria-hidden="true">↗</span></a>`
+      : `<span class="button is-disabled ${extraClass}" aria-disabled="true">${escapeHtml(label)} · em breve</span>`;
+
+    document.querySelectorAll('[data-actions]').forEach(group => {
+      const keys = group.dataset.actions.split(',');
+      const labels = group.dataset.labels.split(',');
+      group.innerHTML = keys.map((key, index) => externalButton(labels[index], content.links?.[key])).join('');
+    });
+
+    const agenda = document.querySelector('#agenda-list');
+    if (content.agenda?.length) {
+      agenda.innerHTML = content.agenda.map(item => `<article class="event"><div class="event-date">${escapeHtml(item.data)}</div><div><h3>${escapeHtml(item.titulo)}</h3><p>${escapeHtml(item.local)}${item.horario ? ` · ${escapeHtml(item.horario)}` : ''}</p></div>${externalButton('Detalhes', item.link, 'light')}</article>`).join('');
+    } else {
+      agenda.innerHTML = `<div class="empty-agenda"><div><strong>Novas datas chegam em breve.</strong><p>Assim que os próximos encontros estiverem confirmados, lugares, dias e horários aparecem aqui.</p></div><span class="moon-sign" aria-hidden="true">☾</span></div>`;
+    }
+
+    const books = document.querySelector('#books-grid');
+    books.innerHTML = (content.livros || []).map(book => `<article class="book-card"><div class="cover-placeholder"><span>Capa em breve</span><strong>${escapeHtml(book.titulo)}</strong></div><h3>${escapeHtml(book.titulo)}</h3><p class="book-meta"><strong>Autoria:</strong> ${escapeHtml(book.autoria)}</p><p class="book-meta"><strong>Ilustrações:</strong> ${escapeHtml(book.ilustracoes)}</p><p class="book-description">${escapeHtml(book.apresentacao)}</p>${externalButton('Comprar', book.comprar, 'outline')}</article>`).join('');
+
+    const products = document.querySelector('#products-grid');
+    if (content.produtos?.length) {
+      products.innerHTML = content.produtos.map(product => `<article class="product-card"><div><strong>Produto Jô-Lê</strong><h3>${escapeHtml(product.nome)}</h3><p>${escapeHtml(product.descricao)}</p></div></article>`).join('');
+    } else {
+      products.innerHTML = [1, 2, 3].map(index => `<article class="product-card"><div><strong>Espaço para produto ${String(index).padStart(2, '0')}</strong><h3>Novidades em breve</h3></div></article>`).join('');
+    }
+    document.querySelector('#shop-action').innerHTML = externalButton('Visite a lojinha', content.links?.lojinha);
+    document.querySelector('#contact-action').innerHTML = externalButton('Fale com a gente', content.links?.whatsapp, 'light');
+
+    const socialMap = [['YouTube', 'youtube'], ['Spotify', 'spotify'], ['Instagram', 'instagram'], ['WhatsApp', 'whatsapp'], ['E-mail', 'email']];
+    document.querySelector('#social-links').innerHTML = socialMap.map(([label, key]) => externalButton(label, content.links?.[key])).join('');
+
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.site-nav');
-    const links = [...nav.querySelectorAll('a')];
+    const navLinks = [...nav.querySelectorAll('a')];
     const closeMenu = () => { toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menu'); nav.classList.remove('open'); document.body.classList.remove('menu-open'); };
     toggle.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') === 'true'; toggle.setAttribute('aria-expanded', String(!open)); toggle.setAttribute('aria-label', open ? 'Abrir menu' : 'Fechar menu'); nav.classList.toggle('open', !open); document.body.classList.toggle('menu-open', !open); });
-    links.forEach(link => link.addEventListener('click', closeMenu));
-    window.addEventListener('resize', () => { if (window.innerWidth > 920) closeMenu(); });
-    const revealObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }); }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
-    const sections = [...document.querySelectorAll('main section[id]')];
-    const sectionObserver = new IntersectionObserver(entries => { const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]; if (!visible) return; links.forEach(link => link.removeAttribute('aria-current')); const active = links.find(link => link.getAttribute('href') === `#${visible.target.id}`); if (active) active.setAttribute('aria-current', 'true'); }, { rootMargin: '-25% 0px -60% 0px', threshold: [0, .25, .6] });
-    sections.forEach(section => sectionObserver.observe(section));
+    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => { if (innerWidth > 980) closeMenu(); });
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      navLinks.forEach(link => link.removeAttribute('aria-current'));
+      navLinks.find(link => link.hash === `#${visible.target.id}`)?.setAttribute('aria-current', 'true');
+    }, { rootMargin: '-25% 0px -60% 0px', threshold: [0, .25, .6] });
+    document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
   </script>
 </body>
 </html>
