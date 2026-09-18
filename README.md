@@ -3,11 +3,12 @@
 Base inicial de um site estático em português, com página provisória e layout responsivo.
 
 ## Estrutura
-- public/index.html: página inicial, estilos e favicon.
+- dist/index.html: página principal, estilos, interações e favicon.
+- dist/assets/: imagens usadas pelo site.
 - wrangler.jsonc: configuração de publicação na Cloudflare Workers com Static Assets.
 
 ## Desenvolvimento
-Abra public/index.html no navegador para visualizar a página.
+Abra dist/index.html no navegador para visualizar a página.
 Com Node.js instalado, execute `npx wrangler dev` para iniciar o servidor local.
 Para publicar na conta autenticada da Cloudflare, execute `npx wrangler deploy`.
 Documentação: https://developers.cloudflare.com/workers/static-assets/
@@ -23,4 +24,3 @@ Repositório privado, com branch principal main.
 - Definir conteúdo final e domínio com o proprietário.
 
 Nenhuma credencial deve ser incluída no repositório.
-
