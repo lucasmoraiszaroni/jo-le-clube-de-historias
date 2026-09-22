@@ -10,13 +10,13 @@
 
 window.JOLE_CONTENT = {
   links: {
-    youtube: "",
+    youtube: "https://www.youtube.com/@Joleclube",
     playlistConta: "",
     playlistLe: "",
     playlistNaninhaYoutube: "",
     playlistNaninhaSpotify: "",
     spotify: "",
-    instagram: "",
+    instagram: "https://www.instagram.com/joleclube/",
     whatsapp: "",
     email: "",
     lojinha: ""

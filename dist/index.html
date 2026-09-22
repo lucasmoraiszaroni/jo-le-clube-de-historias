@@ -4,21 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jô-Lê — histórias, livros, vídeos, contações, palestras, cursos e oficinas para crianças de todas as idades.">
-  <meta name="theme-color" content="#FDFBD4">
+  <meta name="theme-color" content="#FFF0DB">
   <title>Jô-Lê · Clube de histórias</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23f1dfb8'/%3E%3Cpath d='m32 12 4.6 12.4L50 25l-10.5 8.3L43 46l-11-7.4L21 46l3.5-12.7L14 25l13.4-.6L32 12Z' fill='%23cc6045'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23fff0db'/%3E%3Cpath d='m32 12 4.6 12.4L50 25l-10.5 8.3L43 46l-11-7.4L21 46l3.5-12.7L14 25l13.4-.6L32 12Z' fill='%23cc6045'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Schoolbell&display=swap" rel="stylesheet">
   <script src="content.js"></script>
   <style>
     :root {
-      --paper: #FDFBD4;
+      --paper: #FFF0DB;
       --ink: #4d4b2e;
       --green: #5d7550;
       --coral: #c86d55;
       --sun: #e4b94d;
       --line: rgba(77, 75, 46, .15);
-      --logo: "Segoe Print", "Bradley Hand ITC", "Comic Sans MS", cursive;
-      --sans: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-      --body: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      --logo: "Schoolbell", "Segoe Print", "Bradley Hand ITC", cursive;
+      --sans: "Baloo 2", "Arial Rounded MT Bold", sans-serif;
+      --body: "Nunito", "Trebuchet MS", sans-serif;
       --page: min(1120px, calc(100% - 48px));
     }
 
@@ -35,7 +38,7 @@
     .skip-link:focus { transform: none; }
     .container { width: var(--page); margin: 0 auto; }
 
-    .site-header { position: fixed; z-index: 100; inset: 0 0 auto; background: rgba(253, 251, 212, .94); backdrop-filter: blur(10px); }
+    .site-header { position: fixed; z-index: 100; inset: 0 0 auto; background: rgba(255, 240, 219, .94); backdrop-filter: blur(10px); }
     .nav-wrap { width: var(--page); min-height: 76px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; white-space: nowrap; }
     .brand strong { color: var(--coral); font: 700 2rem/.8 var(--logo); letter-spacing: -.1em; }
@@ -49,13 +52,19 @@
     .menu-toggle[aria-expanded="true"]::before { transform: translateY(6px) rotate(45deg); }
     .menu-toggle[aria-expanded="true"]::after { transform: translateY(-6px) rotate(-45deg); }
 
-    .hero { min-height: 78svh; padding: 158px 0 100px; display: grid; align-items: center; }
+    .hero { position: relative; min-height: 78svh; padding: 158px 0 100px; display: grid; align-items: center; overflow: hidden; }
     .hero-grid { max-width: 760px; margin: 0 auto; text-align: center; }
     .kicker, .section-kicker { margin: 0 0 19px; color: var(--coral); font: 700 .9rem/1.2 var(--body); letter-spacing: 0; }
-    .hero h1 { margin: 0; color: var(--coral); font: 700 clamp(4.8rem, 13vw, 9rem)/.88 var(--logo); letter-spacing: -.1em; }
+    .hero h1 { margin: 0; color: var(--coral); font: 700 clamp(4.8rem, 13vw, 9rem)/.88 var(--logo); letter-spacing: -.1em; transform: translateX(.06em); }
     .hero h1 span { display: block; margin-top: 24px; color: var(--green); font: 700 clamp(1.35rem, 3vw, 2rem)/1.15 var(--sans); letter-spacing: -.04em; }
     .hero-copy { max-width: 39rem; margin: 34px 0 0; font-size: clamp(1.08rem, 1.5vw, 1.28rem); }
     .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .hero-sky { position: absolute; inset: 76px 0 0; pointer-events: none; color: var(--sun); font-family: var(--sans); opacity: .78; }
+    .hero-sky span { position: absolute; line-height: 1; }
+    .hero-sky .star-one { top: 24%; left: 12%; font-size: 1.4rem; }
+    .hero-sky .star-two { top: 42%; right: 13%; font-size: 1rem; }
+    .hero-sky .moon { top: 18%; right: 20%; color: var(--coral); font-size: 2rem; }
+    .hero-sky .cloud { bottom: 16%; left: 12%; color: var(--green); font-size: 1.7rem; opacity: .55; }
     .button { display: inline-flex; min-height: 48px; padding: 12px 20px; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--green); border-radius: 999px; background: var(--green); color: var(--paper); font: 800 .8rem/1 var(--sans); letter-spacing: .01em; text-decoration: none; transition: background .2s ease, color .2s ease, transform .2s ease; }
     .button:hover { transform: translateY(-2px); background: var(--coral); border-color: var(--coral); }
     .button.outline { background: transparent; color: var(--green); }
@@ -69,9 +78,14 @@
     .word-list span:not(:last-child)::after { content: "•"; margin-left: clamp(18px, 4vw, 54px); color: var(--coral); }
 
     .section { padding: clamp(90px, 11vw, 138px) 0; }
-    .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 60px; align-items: end; margin-bottom: 58px; }
+    .section-head { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 60px; align-items: end; margin-bottom: 58px; }
     .section h2 { max-width: 16ch; margin: 0; color: var(--green); font: 700 clamp(2.6rem, 5.5vw, 5rem)/1.02 var(--sans); letter-spacing: -.06em; }
     .section-intro { margin: 0; font-size: 1.08rem; }
+    #historias .section-head::after, #quem-somos .section-head::after, #ao-vivo .section-head::after, #livros .section-head::after { position: absolute; right: 0; top: -38px; color: var(--sun); font: 700 1.5rem/1 var(--sans); opacity: .78; pointer-events: none; }
+    #historias .section-head::after { content: "☁"; color: var(--green); }
+    #quem-somos .section-head::after { content: "⌒⌒"; color: var(--coral); letter-spacing: -.45rem; }
+    #ao-vivo .section-head::after { content: "☾"; color: var(--coral); font-size: 2rem; }
+    #livros .section-head::after { content: "✦  ✧"; }
 
     .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 58px); align-items: start; }
     .story-card { min-width: 0; display: flex; flex-direction: column; }
@@ -89,10 +103,6 @@
     .person-copy .role { color: var(--coral); font: 800 .76rem/1.35 var(--sans); letter-spacing: .02em; }
     .person-copy h3 { margin: 10px 0 16px; color: var(--green); font: 900 2rem/1 var(--sans); }
     .person-copy p { margin: 0; }
-    .quintal-note { margin-top: 76px; padding: 0; display: grid; grid-template-columns: .35fr 1fr; gap: 40px; }
-    .quintal-note strong { color: var(--coral); font: 900 1.5rem/1 var(--sans); }
-    .quintal-note p { margin: 0; }
-
     .live { color: var(--ink); }
     .agenda-list { display: grid; gap: 1px; }
     .event { padding: 26px 0; display: grid; grid-template-columns: 120px 1fr auto; gap: 28px; align-items: center; border-bottom: 1px solid var(--line); }
@@ -159,10 +169,13 @@
       .word-list span:not(:last-child)::after { margin-left: 18px; }
       .section { padding: 76px 0; }
       .section-head { gap: 28px; margin-bottom: 40px; }
+      .hero-sky .star-one { left: 5%; }
+      .hero-sky .star-two { right: 5%; }
+      .hero-sky .moon { right: 8%; }
+      .hero-sky .cloud { left: 5%; bottom: 9%; }
       .section h2 { font-size: clamp(2.9rem, 16vw, 4.1rem); }
       .person-card { grid-template-columns: 110px 1fr; gap: 18px; }
       .person-copy h3 { font-size: 1.55rem; }
-      .quintal-note { grid-template-columns: 1fr; gap: 14px; }
       .empty-agenda { grid-template-columns: 1fr; }
       .empty-agenda .moon-sign { display: none; }
       .event { grid-template-columns: 1fr; gap: 12px; }
@@ -193,6 +206,7 @@
 
   <main id="conteudo">
     <section class="hero" id="inicio" aria-labelledby="titulo-inicio">
+      <div class="hero-sky" aria-hidden="true"><span class="star-one">✦</span><span class="star-two">✧</span><span class="moon">☾</span><span class="cloud">☁</span></div>
       <div class="container hero-grid">
         <div>
           <p class="kicker">Histórias alimentam</p>
@@ -207,7 +221,7 @@
 
     <section class="section stories" id="historias" aria-labelledby="titulo-historias">
       <div class="container">
-        <div class="section-head"><div><p class="section-kicker">01 · Histórias</p><h2 id="titulo-historias">Um canal, três jeitos de contar.</h2></div><p class="section-intro">No canal do Jô-Lê no YouTube, cada playlist abre uma porta diferente para ouvir, assistir e compartilhar histórias.</p></div>
+        <div class="section-head"><div><p class="section-kicker">Histórias</p><h2 id="titulo-historias">Um canal, três jeitos de contar.</h2></div><p class="section-intro">No canal do Jô-Lê no YouTube, cada playlist abre uma porta diferente para ouvir, assistir e compartilhar histórias.</p></div>
         <div class="story-grid">
           <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-conta.png" alt="Arte original da playlist Jô-Lê Conta"></div><span class="number">Playlist 01</span><h3>Jô-Lê Conta</h3><p>Histórias narradas em áudio, acompanhadas por ilustrações.</p><div class="card-actions" data-actions="playlistConta" data-labels="YouTube"></div></article>
           <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-le.png" alt="Arte original da playlist Jô-Lê Lê"></div><span class="number">Playlist 02</span><h3>Jô-Lê Lê</h3><p>Vídeos de Helena e Jonathan lendo um livro juntos.</p><div class="card-actions" data-actions="playlistLe" data-labels="YouTube"></div></article>
@@ -218,32 +232,31 @@
 
     <section class="section" id="quem-somos" aria-labelledby="titulo-quem-somos">
       <div class="container">
-        <div class="section-head"><div><p class="section-kicker">02 · Quem Somos</p><h2 id="titulo-quem-somos">Artistas que trabalham para a infância.</h2></div><p class="section-intro">O Jô-Lê é criado e dirigido por Helena Ritto, em parceria artística com Jonathan Faria.</p></div>
+        <div class="section-head"><div><p class="section-kicker">Quem Somos</p><h2 id="titulo-quem-somos">Artistas que trabalham para a infância.</h2></div><p class="section-intro">O Jô-Lê é criado e dirigido por Helena Ritto, em parceria artística com Jonathan Faria.</p></div>
         <div class="about-grid">
-          <article class="person-card"><img class="person-photo" src="assets/helena.jpg" alt="Helena Ritto"><div class="person-copy"><span class="role">Criadora e diretora criativa do Jô-Lê</span><h3>Helena Ritto</h3><p>Atriz, escritora, ilustradora, contadora de histórias e arte-educadora.</p></div></article>
-          <article class="person-card"><img class="person-photo" src="assets/jonathan.jpg" alt="Jonathan Faria"><div class="person-copy"><span class="role">Parceiro artístico, intérprete e ilustrador</span><h3>Jonathan Faria</h3><p>Ator, dublador, narrador de audiolivros, ilustrador e arte-educador.</p></div></article>
+          <article class="person-card"><img class="person-photo" src="assets/helena.jpg" alt="Helena Ritto"><div class="person-copy"><span class="role">Criadora e diretora criativa do Jô-Lê.</span><h3>Helena Ritto</h3><p>Atriz, escritora, ilustradora, contadora de histórias e arte-educadora.</p></div></article>
+          <article class="person-card"><img class="person-photo" src="assets/jonathan.jpg" alt="Jonathan Faria"><div class="person-copy"><span class="role">Parceiro artístico, intérprete e ilustrador.</span><h3>Jonathan Faria</h3><p>Ator, dublador, narrador de audiolivros, ilustrador e arte-educador.</p></div></article>
         </div>
-        <div class="quintal-note"><strong>O Quintal</strong><p>Este espaço está preparado para receber as fotos e a história do Quintal, além dos registros de contações, palestras e oficinas.</p></div>
       </div>
     </section>
 
     <section class="section live" id="ao-vivo" aria-labelledby="titulo-ao-vivo">
       <div class="container">
-        <div class="section-head"><div><p class="section-kicker">03 · Ao Vivo</p><h2 id="titulo-ao-vivo">Onde encontrar nossas histórias.</h2></div><p class="section-intro">Próximas contações, palestras, cursos e oficinas do Jô-Lê.</p></div>
+        <div class="section-head"><div><p class="section-kicker">Ao Vivo</p><h2 id="titulo-ao-vivo">Onde encontrar nossas histórias.</h2></div><p class="section-intro">Próximas contações, palestras, cursos e oficinas do Jô-Lê.</p></div>
         <div class="agenda-list" id="agenda-list"></div>
       </div>
     </section>
 
     <section class="section books" id="livros" aria-labelledby="titulo-livros">
       <div class="container">
-        <div class="section-head"><div><p class="section-kicker">04 · Livros</p><h2 id="titulo-livros">Histórias para levar com você.</h2></div><p class="section-intro">Livros autorais do Jô-Lê. A compra acontece diretamente no site da editora ou na plataforma indicada.</p></div>
+        <div class="section-head"><div><p class="section-kicker">Livros</p><h2 id="titulo-livros">Histórias para levar com você.</h2></div><p class="section-intro">Livros autorais do Jô-Lê. A compra acontece diretamente no site da editora ou na plataforma indicada.</p></div>
         <div class="books-grid" id="books-grid"></div>
       </div>
     </section>
 
     <section class="section shop" id="lojinha" aria-labelledby="titulo-lojinha">
       <div class="container">
-        <p class="section-kicker">05 · Lojinha Jô-Lê</p><h2 id="titulo-lojinha">Um pedaço do nosso universo para levar para casa.</h2>
+        <p class="section-kicker">Lojinha Jô-Lê</p><h2 id="titulo-lojinha">Um pedaço do nosso universo para levar para casa.</h2>
         <p class="shop-intro">Os produtos aparecem aqui para você conhecer. Pagamento, carrinho, estoque e frete ficam por conta da plataforma de vendas.</p>
         <div class="products-grid" id="products-grid"></div>
         <div id="shop-action"></div>
@@ -253,7 +266,7 @@
     <section class="section contact" id="contato" aria-labelledby="titulo-contato">
       <div class="container">
         <div class="contact-grid">
-          <div><p class="section-kicker">06 · Contato</p><h2 id="titulo-contato">Quer levar a gente para o seu evento?</h2><p class="contact-copy">Para escolas, eventos, cidades e projetos culturais. Fale com o Jô-Lê sobre uma proposta profissional.</p><div id="contact-action"></div></div>
+          <div><p class="section-kicker">Contato</p><h2 id="titulo-contato">Quer levar a gente para o seu evento?</h2><p class="contact-copy">Para escolas, eventos, cidades e projetos culturais. Fale com o Jô-Lê sobre uma proposta profissional.</p><div id="contact-action"></div></div>
           <ul class="service-list"><li>Contação de histórias</li><li>Palestras</li><li>Mediação de leitura</li><li>Oficinas e cursos</li><li>Mestres de cerimônia</li><li>Livros e projetos especiais</li></ul>
         </div>
         <div class="socials" id="social-links" aria-label="Redes sociais do Jô-Lê"></div>
