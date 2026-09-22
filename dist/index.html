@@ -19,7 +19,7 @@
       --coral: #c86d55;
       --sun: #e4b94d;
       --line: rgba(77, 75, 46, .15);
-      --logo: "Schoolbell", "Segoe Print", "Bradley Hand ITC", cursive;
+      --logo: "Segoe Print", "Bradley Hand ITC", "Comic Sans MS", cursive;
       --sans: "Baloo 2", "Arial Rounded MT Bold", sans-serif;
       --body: "Nunito", "Trebuchet MS", sans-serif;
       --page: min(1120px, calc(100% - 48px));
@@ -55,7 +55,7 @@
     .hero { position: relative; min-height: 78svh; padding: 158px 0 100px; display: grid; align-items: center; overflow: hidden; }
     .hero-grid { max-width: 760px; margin: 0 auto; text-align: center; }
     .kicker, .section-kicker { margin: 0 0 19px; color: var(--coral); font: 700 .9rem/1.2 var(--body); letter-spacing: 0; }
-    .hero h1 { margin: 0; color: var(--coral); font: 700 clamp(4.8rem, 13vw, 9rem)/.88 var(--logo); letter-spacing: -.1em; transform: translateX(.06em); }
+    .hero h1 { margin: 0; color: var(--coral); font: 700 clamp(4.8rem, 13vw, 9rem)/.88 var(--logo); letter-spacing: -.1em; }
     .hero h1 span { display: block; margin-top: 24px; color: var(--green); font: 700 clamp(1.35rem, 3vw, 2rem)/1.15 var(--sans); letter-spacing: -.04em; }
     .hero-copy { max-width: 39rem; margin: 34px 0 0; font-size: clamp(1.08rem, 1.5vw, 1.28rem); }
     .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
@@ -77,7 +77,7 @@
     .word-list { width: var(--page); margin: 0 auto; display: flex; justify-content: center; gap: 20px; color: var(--green); font: 700 .83rem/1 var(--body); letter-spacing: 0; }
     .word-list span:not(:last-child)::after { content: "•"; margin-left: clamp(18px, 4vw, 54px); color: var(--coral); }
 
-    .section { padding: clamp(90px, 11vw, 138px) 0; }
+    .section { padding: clamp(70px, 8vw, 96px) 0; }
     .section-head { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 60px; align-items: end; margin-bottom: 58px; }
     .section h2 { max-width: 16ch; margin: 0; color: var(--green); font: 700 clamp(2.6rem, 5.5vw, 5rem)/1.02 var(--sans); letter-spacing: -.06em; }
     .section-intro { margin: 0; font-size: 1.08rem; }
@@ -136,8 +136,8 @@
     .service-list { margin: 0; padding: 0; display: grid; list-style: none; }
     .service-list li { padding: 13px 0; border-bottom: 1px solid var(--line); font: 800 .82rem/1 var(--sans); letter-spacing: .02em; }
     .socials { margin-top: 60px; display: flex; flex-wrap: wrap; gap: 9px; }
-    .socials .button { background: transparent; }
-    .socials .button:hover { background: var(--green); color: var(--paper); }
+    .socials .button:not(.is-disabled) { background: var(--green); color: var(--paper); }
+    .socials .button:not(.is-disabled):hover { background: var(--coral); border-color: var(--coral); color: var(--paper); }
     .footer { padding: 46px 0 28px; color: var(--green); }
     .footer-inner { width: var(--page); margin: 0 auto; display: flex; justify-content: space-between; gap: 28px; font-size: .8rem; }
 
@@ -167,7 +167,7 @@
       .hero-actions .button { width: 100%; }
       .word-list { width: max-content; padding-inline: 16px; }
       .word-list span:not(:last-child)::after { margin-left: 18px; }
-      .section { padding: 76px 0; }
+      .section { padding: 62px 0; }
       .section-head { gap: 28px; margin-bottom: 40px; }
       .hero-sky .star-one { left: 5%; }
       .hero-sky .star-two { right: 5%; }
@@ -209,7 +209,6 @@
       <div class="hero-sky" aria-hidden="true"><span class="star-one">✦</span><span class="star-two">✧</span><span class="moon">☾</span><span class="cloud">☁</span></div>
       <div class="container hero-grid">
         <div>
-          <p class="kicker">Histórias alimentam</p>
           <h1 id="titulo-inicio">Jô-Lê<span>Clube de histórias</span></h1>
           <p class="hero-copy">Histórias, livros, vídeos, contações, palestras, cursos e oficinas para crianças de todas as idades.</p>
           <div class="hero-actions"><a class="button" href="#ao-vivo">Onde encontrar o Jô-Lê</a><a class="button outline" href="#historias">Ver e ouvir histórias</a></div>
@@ -223,9 +222,9 @@
       <div class="container">
         <div class="section-head"><div><p class="section-kicker">Histórias</p><h2 id="titulo-historias">Um canal, três jeitos de contar.</h2></div><p class="section-intro">No canal do Jô-Lê no YouTube, cada playlist abre uma porta diferente para ouvir, assistir e compartilhar histórias.</p></div>
         <div class="story-grid">
-          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-conta.png" alt="Arte original da playlist Jô-Lê Conta"></div><span class="number">Playlist 01</span><h3>Jô-Lê Conta</h3><p>Histórias narradas em áudio, acompanhadas por ilustrações.</p><div class="card-actions" data-actions="playlistConta" data-labels="YouTube"></div></article>
-          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-le.png" alt="Arte original da playlist Jô-Lê Lê"></div><span class="number">Playlist 02</span><h3>Jô-Lê Lê</h3><p>Vídeos de Helena e Jonathan lendo um livro juntos.</p><div class="card-actions" data-actions="playlistLe" data-labels="YouTube"></div></article>
-          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/hora-da-naninha.png" alt="Arte original da playlist Hora da Naninha"></div><span class="number">Playlist 03</span><h3>Hora da Naninha</h3><p>Histórias narradas em áudio, acompanhadas por uma imagem parada.</p><div class="card-actions" data-actions="playlistNaninhaYoutube,playlistNaninhaSpotify" data-labels="YouTube,Spotify"></div></article>
+          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-conta.png" alt="Arte original da playlist Jô-Lê Conta"></div><h3>Jô-Lê Conta</h3><p>Histórias narradas em áudio, acompanhadas por ilustrações.</p><div class="card-actions" data-actions="playlistConta" data-labels="YouTube"></div></article>
+          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-le.png" alt="Arte original da playlist Jô-Lê Lê"></div><h3>Jô-Lê Lê</h3><p>Vídeos de Helena e Jonathan lendo um livro juntos.</p><div class="card-actions" data-actions="playlistLe" data-labels="YouTube"></div></article>
+          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/hora-da-naninha.png" alt="Arte original da playlist Hora da Naninha"></div><h3>Hora da Naninha</h3><p>Histórias narradas em áudio, acompanhadas por uma imagem parada.</p><div class="card-actions" data-actions="playlistNaninhaYoutube,playlistNaninhaSpotify" data-labels="YouTube,Spotify"></div></article>
         </div>
       </div>
     </section>
