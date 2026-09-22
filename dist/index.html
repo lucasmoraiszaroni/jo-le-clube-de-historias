@@ -57,7 +57,7 @@
     .kicker, .section-kicker { margin: 0 0 19px; color: var(--coral); font: 700 .9rem/1.2 var(--body); letter-spacing: 0; }
     .hero h1 { margin: 0; color: var(--coral); font: 700 clamp(4.8rem, 13vw, 9rem)/.88 var(--logo); letter-spacing: -.1em; }
     .hero h1 span { display: block; margin-top: 24px; color: var(--green); font: 700 clamp(1.35rem, 3vw, 2rem)/1.15 var(--sans); letter-spacing: -.04em; }
-    .hero-copy { max-width: 39rem; margin: 34px 0 0; font-size: clamp(1.08rem, 1.5vw, 1.28rem); }
+    .hero-copy { max-width: 39rem; margin: 34px auto 0; font-size: clamp(1.08rem, 1.5vw, 1.28rem); }
     .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
     .hero-sky { position: absolute; inset: 76px 0 0; pointer-events: none; color: var(--sun); font-family: var(--sans); opacity: .78; }
     .hero-sky span { position: absolute; line-height: 1; }
@@ -78,9 +78,9 @@
     .word-list span:not(:last-child)::after { content: "•"; margin-left: clamp(18px, 4vw, 54px); color: var(--coral); }
 
     .section { padding: clamp(70px, 8vw, 96px) 0; }
-    .section-head { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 60px; align-items: end; margin-bottom: 58px; }
+    .section-head { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 60px; align-items: start; margin-bottom: 58px; }
     .section h2 { max-width: 16ch; margin: 0; color: var(--green); font: 700 clamp(2.6rem, 5.5vw, 5rem)/1.02 var(--sans); letter-spacing: -.06em; }
-    .section-intro { margin: 0; font-size: 1.08rem; }
+    .section-intro { margin: 0; padding-top: calc(.9rem * 1.2 + 27px); font-size: 1.08rem; }
     #historias .section-head::after, #quem-somos .section-head::after, #ao-vivo .section-head::after, #livros .section-head::after { position: absolute; right: 0; top: -38px; color: var(--sun); font: 700 1.5rem/1 var(--sans); opacity: .78; pointer-events: none; }
     #historias .section-head::after { content: "☁"; color: var(--green); }
     #quem-somos .section-head::after { content: "⌒⌒"; color: var(--coral); letter-spacing: -.45rem; }
@@ -130,10 +130,10 @@
     .product-card strong { font: 800 .78rem/1.4 var(--sans); letter-spacing: .02em; }
     .product-card h3 { margin: 10px 0 0; font: 900 1.45rem/1 var(--sans); }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr .7fr; gap: clamp(50px, 9vw, 130px); align-items: end; }
+    .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 60px; align-items: start; }
     .contact h2 { max-width: 10ch; }
     .contact-copy { max-width: 40rem; margin: 26px 0 30px; font-size: 1.14rem; }
-    .service-list { margin: 0; padding: 0; display: grid; list-style: none; }
+    .service-list { margin: 0; padding: calc(.9rem * 1.2 + 19px) 0 0; display: grid; list-style: none; }
     .service-list li { padding: 13px 0; border-bottom: 1px solid var(--line); font: 800 .82rem/1 var(--sans); letter-spacing: .02em; }
     .socials { margin-top: 60px; display: flex; flex-wrap: wrap; gap: 9px; }
     .socials .button:not(.is-disabled) { background: var(--green); color: var(--paper); }
@@ -149,6 +149,7 @@
       .site-nav a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
       .hero { min-height: auto; }
       .section-head, .contact-grid { grid-template-columns: 1fr; }
+      .section-intro, .service-list { padding-top: 0; }
       .story-grid { grid-template-columns: 1fr; }
       .story-card { min-height: 0; max-width: 440px; }
       .playlist-frame { width: min(74vw, 300px); margin-inline: 0; }
