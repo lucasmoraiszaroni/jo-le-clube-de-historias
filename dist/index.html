@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jô-Lê — histórias, livros, vídeos, contações, palestras, cursos e oficinas para crianças de todas as idades.">
-  <meta name="theme-color" content="#f1dfb8">
+  <meta name="theme-color" content="#FDFBD4">
   <title>Jô-Lê · Clube de histórias</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23f1dfb8'/%3E%3Cpath d='m32 12 4.6 12.4L50 25l-10.5 8.3L43 46l-11-7.4L21 46l3.5-12.7L14 25l13.4-.6L32 12Z' fill='%23cc6045'/%3E%3C/svg%3E">
   <script src="content.js"></script>
@@ -15,9 +15,10 @@
       --green: #5d7550;
       --coral: #c86d55;
       --sun: #e4b94d;
-      --line: rgba(77, 75, 46, .24);
-      --sans: "Arial Rounded MT Bold", "Trebuchet MS", "Verdana", sans-serif;
-      --body: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+      --line: rgba(77, 75, 46, .15);
+      --logo: "Segoe Print", "Bradley Hand ITC", "Comic Sans MS", cursive;
+      --sans: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+      --body: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
       --page: min(1120px, calc(100% - 48px));
     }
 
@@ -34,13 +35,13 @@
     .skip-link:focus { transform: none; }
     .container { width: var(--page); margin: 0 auto; }
 
-    .site-header { position: fixed; z-index: 100; inset: 0 0 auto; border-bottom: 1px solid var(--line); background: rgba(253, 251, 212, .96); backdrop-filter: blur(10px); }
+    .site-header { position: fixed; z-index: 100; inset: 0 0 auto; background: rgba(253, 251, 212, .94); backdrop-filter: blur(10px); }
     .nav-wrap { width: var(--page); min-height: 76px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; white-space: nowrap; }
-    .brand strong { color: var(--coral); font: 800 1.7rem/1 var(--sans); letter-spacing: -.05em; }
-    .brand span { color: var(--green); font: 700 .72rem/1 var(--sans); letter-spacing: .04em; }
+    .brand strong { color: var(--coral); font: 700 2rem/.8 var(--logo); letter-spacing: -.1em; }
+    .brand span { color: var(--green); font: 700 .72rem/1 var(--sans); letter-spacing: 0; }
     .site-nav { display: flex; align-items: center; gap: clamp(12px, 1.8vw, 25px); }
-    .site-nav a { padding: 27px 0 22px; border-bottom: 3px solid transparent; font: 700 .8rem/1 var(--sans); letter-spacing: .01em; text-decoration: none; }
+    .site-nav a { padding: 27px 0 22px; border-bottom: 2px solid transparent; font: 700 .78rem/1 var(--body); letter-spacing: 0; text-decoration: none; }
     .site-nav a:hover, .site-nav a[aria-current="true"] { border-color: var(--coral); }
     .menu-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid var(--green); border-radius: 50%; background: transparent; color: var(--green); cursor: pointer; }
     .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 19px; height: 2px; margin: 4px auto; background: currentColor; transition: transform .2s ease, opacity .2s ease; }
@@ -48,11 +49,11 @@
     .menu-toggle[aria-expanded="true"]::before { transform: translateY(6px) rotate(45deg); }
     .menu-toggle[aria-expanded="true"]::after { transform: translateY(-6px) rotate(-45deg); }
 
-    .hero { min-height: 84svh; padding: 145px 0 86px; display: grid; align-items: center; border-bottom: 1px solid var(--line); }
-    .hero-grid { max-width: 800px; margin: 0 auto; text-align: center; }
-    .kicker, .section-kicker { margin: 0 0 19px; color: var(--coral); font: 800 .82rem/1.2 var(--sans); letter-spacing: .03em; }
-    .hero h1 { margin: 0; color: var(--green); font: 900 clamp(5rem, 13vw, 9.5rem)/.88 var(--sans); letter-spacing: -.07em; }
-    .hero h1 span { display: block; margin-top: 20px; color: var(--coral); font: 700 clamp(1.35rem, 3vw, 2rem)/1.15 var(--sans); letter-spacing: -.03em; }
+    .hero { min-height: 78svh; padding: 158px 0 100px; display: grid; align-items: center; }
+    .hero-grid { max-width: 760px; margin: 0 auto; text-align: center; }
+    .kicker, .section-kicker { margin: 0 0 19px; color: var(--coral); font: 700 .9rem/1.2 var(--body); letter-spacing: 0; }
+    .hero h1 { margin: 0; color: var(--coral); font: 700 clamp(4.8rem, 13vw, 9rem)/.88 var(--logo); letter-spacing: -.1em; }
+    .hero h1 span { display: block; margin-top: 24px; color: var(--green); font: 700 clamp(1.35rem, 3vw, 2rem)/1.15 var(--sans); letter-spacing: -.04em; }
     .hero-copy { max-width: 39rem; margin: 34px 0 0; font-size: clamp(1.08rem, 1.5vw, 1.28rem); }
     .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
     .button { display: inline-flex; min-height: 48px; padding: 12px 20px; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--green); border-radius: 999px; background: var(--green); color: var(--paper); font: 800 .8rem/1 var(--sans); letter-spacing: .01em; text-decoration: none; transition: background .2s ease, color .2s ease, transform .2s ease; }
@@ -63,48 +64,49 @@
     .button.light:hover { border-color: var(--green); background: var(--green); color: var(--paper); }
     .button.is-disabled { border-color: currentColor; background: transparent; color: inherit; opacity: .48; cursor: default; pointer-events: none; }
 
-    .word-strip { padding: 17px 0; border-bottom: 1px solid var(--line); overflow: hidden; }
-    .word-list { width: var(--page); margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; color: var(--green); font: 800 .8rem/1 var(--sans); letter-spacing: .02em; }
+    .word-strip { padding: 18px 0 0; overflow: hidden; }
+    .word-list { width: var(--page); margin: 0 auto; display: flex; justify-content: center; gap: 20px; color: var(--green); font: 700 .83rem/1 var(--body); letter-spacing: 0; }
     .word-list span:not(:last-child)::after { content: "•"; margin-left: clamp(18px, 4vw, 54px); color: var(--coral); }
 
-    .section { padding: clamp(88px, 11vw, 150px) 0; border-bottom: 1px solid var(--line); }
-    .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 48px; align-items: end; margin-bottom: 58px; }
-    .section h2 { max-width: 15ch; margin: 0; color: var(--green); font: 900 clamp(2.7rem, 6vw, 5.4rem)/.95 var(--sans); letter-spacing: -.06em; }
+    .section { padding: clamp(90px, 11vw, 138px) 0; }
+    .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .5fr); gap: 60px; align-items: end; margin-bottom: 58px; }
+    .section h2 { max-width: 16ch; margin: 0; color: var(--green); font: 700 clamp(2.6rem, 5.5vw, 5rem)/1.02 var(--sans); letter-spacing: -.06em; }
     .section-intro { margin: 0; font-size: 1.08rem; }
 
-    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .story-card { min-width: 0; padding-bottom: 26px; display: flex; flex-direction: column; border-bottom: 1px solid var(--line); }
-    .playlist-art { width: 100%; height: auto; display: block; margin-bottom: 24px; border: 1px solid var(--line); }
-    .story-card .number { color: var(--coral); font: 800 .78rem/1 var(--sans); letter-spacing: .02em; }
-    .story-card h3 { margin: 16px 0 12px; color: var(--green); font: 900 clamp(1.8rem, 3vw, 2.6rem)/.98 var(--sans); letter-spacing: -.05em; }
-    .story-card p { margin: 0 0 28px; }
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 58px); align-items: start; }
+    .story-card { min-width: 0; display: flex; flex-direction: column; }
+    .playlist-frame { width: min(100%, 276px); aspect-ratio: 1; margin: 0 auto 27px; overflow: hidden; border-radius: 50%; }
+    .playlist-art { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .story-card .number { color: var(--coral); font: 700 .82rem/1 var(--body); letter-spacing: 0; }
+    .story-card h3 { margin: 15px 0 12px; color: var(--green); font: 700 clamp(1.8rem, 3vw, 2.6rem)/1 var(--sans); letter-spacing: -.06em; }
+    .story-card p { max-width: 28ch; margin: 0 0 28px; }
     .card-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .card-actions .button { min-height: 42px; padding: 10px 15px; font-size: .7rem; }
 
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-    .person-card { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: center; padding-top: 24px; border-top: 1px solid var(--line); }
-    .person-photo { width: 100%; aspect-ratio: 4 / 5; display: block; object-fit: cover; border: 1px solid var(--line); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(42px, 7vw, 90px); }
+    .person-card { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: center; }
+    .person-photo { width: 100%; aspect-ratio: 4 / 5; display: block; object-fit: cover; border-radius: 47% 47% 43% 43%; }
     .person-copy .role { color: var(--coral); font: 800 .76rem/1.35 var(--sans); letter-spacing: .02em; }
     .person-copy h3 { margin: 10px 0 16px; color: var(--green); font: 900 2rem/1 var(--sans); }
     .person-copy p { margin: 0; }
-    .quintal-note { margin-top: 60px; padding: 34px 0; display: grid; grid-template-columns: .35fr 1fr; gap: 40px; border-block: 1px solid var(--line); }
+    .quintal-note { margin-top: 76px; padding: 0; display: grid; grid-template-columns: .35fr 1fr; gap: 40px; }
     .quintal-note strong { color: var(--coral); font: 900 1.5rem/1 var(--sans); }
     .quintal-note p { margin: 0; }
 
     .live { color: var(--ink); }
-    .agenda-list { display: grid; gap: 1px; border-block: 1px solid var(--line); }
-    .event { padding: 26px; display: grid; grid-template-columns: 120px 1fr auto; gap: 28px; align-items: center; border-bottom: 1px solid var(--line); }
+    .agenda-list { display: grid; gap: 1px; }
+    .event { padding: 26px 0; display: grid; grid-template-columns: 120px 1fr auto; gap: 28px; align-items: center; border-bottom: 1px solid var(--line); }
     .event-date { color: var(--coral); font: 900 1.2rem/1 var(--sans); }
     .event h3 { margin: 0 0 6px; color: var(--green); font: 800 1.25rem/1.2 var(--sans); }
     .event p { margin: 0; }
-    .empty-agenda { min-height: 250px; padding: clamp(34px, 6vw, 70px); display: grid; grid-template-columns: 1fr auto; gap: 34px; align-items: end; border: 1px solid var(--line); }
+    .empty-agenda { min-height: 250px; padding: clamp(34px, 6vw, 70px) 0; display: grid; grid-template-columns: 1fr auto; gap: 34px; align-items: end; }
     .empty-agenda strong { display: block; max-width: 15ch; color: var(--green); font: 900 clamp(2rem, 4vw, 3.7rem)/.95 var(--sans); }
     .empty-agenda p { max-width: 32rem; margin: 18px 0 0; }
     .empty-agenda .moon-sign { color: var(--sun); font: 400 5rem/1 serif; }
 
     .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .book-card { min-width: 0; padding: 0 0 28px; border-bottom: 1px solid var(--line); }
-    .cover-placeholder { aspect-ratio: 3 / 4; margin-bottom: 24px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; border: 1px dashed var(--line); color: var(--green); }
+    .book-card { min-width: 0; padding: 0 0 28px; }
+    .cover-placeholder { aspect-ratio: 3 / 4; margin-bottom: 24px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; border: 1px dashed var(--line); border-radius: 45% 45% 6% 6%; color: var(--green); }
     .cover-placeholder span { font: 800 .74rem/1.4 var(--sans); letter-spacing: .02em; }
     .cover-placeholder strong { max-width: 12ch; font: 900 1.45rem/1 var(--sans); }
     .book-card h3 { margin: 0 0 12px; color: var(--green); font: 900 1.45rem/1.05 var(--sans); }
@@ -114,19 +116,19 @@
 
     .shop-intro { max-width: 44rem; margin: 26px 0 0; font-size: 1.12rem; }
     .products-grid { margin: 54px 0 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .product-card { min-height: 280px; padding: 24px; display: flex; align-items: flex-end; border: 1px dashed var(--line); color: var(--green); }
+    .product-card { min-height: 250px; padding: 24px; display: flex; align-items: flex-end; border: 1px dashed var(--line); border-radius: 42% 42% 6% 6%; color: var(--green); }
     .product-card strong { font: 800 .78rem/1.4 var(--sans); letter-spacing: .02em; }
     .product-card h3 { margin: 10px 0 0; font: 900 1.45rem/1 var(--sans); }
 
     .contact-grid { display: grid; grid-template-columns: 1fr .7fr; gap: clamp(50px, 9vw, 130px); align-items: end; }
     .contact h2 { max-width: 10ch; }
     .contact-copy { max-width: 40rem; margin: 26px 0 30px; font-size: 1.14rem; }
-    .service-list { margin: 0; padding: 0; display: grid; list-style: none; border-top: 1px solid var(--line); }
+    .service-list { margin: 0; padding: 0; display: grid; list-style: none; }
     .service-list li { padding: 13px 0; border-bottom: 1px solid var(--line); font: 800 .82rem/1 var(--sans); letter-spacing: .02em; }
     .socials { margin-top: 60px; display: flex; flex-wrap: wrap; gap: 9px; }
     .socials .button { background: transparent; }
     .socials .button:hover { background: var(--green); color: var(--paper); }
-    .footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--green); }
+    .footer { padding: 46px 0 28px; color: var(--green); }
     .footer-inner { width: var(--page); margin: 0 auto; display: flex; justify-content: space-between; gap: 28px; font-size: .8rem; }
 
     @media (max-width: 980px) {
@@ -138,7 +140,8 @@
       .hero { min-height: auto; }
       .section-head, .contact-grid { grid-template-columns: 1fr; }
       .story-grid { grid-template-columns: 1fr; }
-      .story-card { min-height: 300px; }
+      .story-card { min-height: 0; max-width: 440px; }
+      .playlist-frame { width: min(74vw, 300px); margin-inline: 0; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .books-grid { grid-template-columns: repeat(2, 1fr); }
       .products-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -206,9 +209,9 @@
       <div class="container">
         <div class="section-head"><div><p class="section-kicker">01 · Histórias</p><h2 id="titulo-historias">Um canal, três jeitos de contar.</h2></div><p class="section-intro">No canal do Jô-Lê no YouTube, cada playlist abre uma porta diferente para ouvir, assistir e compartilhar histórias.</p></div>
         <div class="story-grid">
-          <article class="story-card"><img class="playlist-art" src="assets/jo-le-conta.png" alt="Arte original da playlist Jô-Lê Conta"><span class="number">Playlist 01</span><h3>Jô-Lê Conta</h3><p>Histórias narradas em áudio, acompanhadas por ilustrações.</p><div class="card-actions" data-actions="playlistConta" data-labels="YouTube"></div></article>
-          <article class="story-card"><img class="playlist-art" src="assets/jo-le-le.png" alt="Arte original da playlist Jô-Lê Lê"><span class="number">Playlist 02</span><h3>Jô-Lê Lê</h3><p>Vídeos de Helena e Jonathan lendo um livro juntos.</p><div class="card-actions" data-actions="playlistLe" data-labels="YouTube"></div></article>
-          <article class="story-card"><img class="playlist-art" src="assets/hora-da-naninha.png" alt="Arte original da playlist Hora da Naninha"><span class="number">Playlist 03</span><h3>Hora da Naninha</h3><p>Histórias narradas em áudio, acompanhadas por uma imagem parada.</p><div class="card-actions" data-actions="playlistNaninhaYoutube,playlistNaninhaSpotify" data-labels="YouTube,Spotify"></div></article>
+          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-conta.png" alt="Arte original da playlist Jô-Lê Conta"></div><span class="number">Playlist 01</span><h3>Jô-Lê Conta</h3><p>Histórias narradas em áudio, acompanhadas por ilustrações.</p><div class="card-actions" data-actions="playlistConta" data-labels="YouTube"></div></article>
+          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/jo-le-le.png" alt="Arte original da playlist Jô-Lê Lê"></div><span class="number">Playlist 02</span><h3>Jô-Lê Lê</h3><p>Vídeos de Helena e Jonathan lendo um livro juntos.</p><div class="card-actions" data-actions="playlistLe" data-labels="YouTube"></div></article>
+          <article class="story-card"><div class="playlist-frame"><img class="playlist-art" src="assets/hora-da-naninha.png" alt="Arte original da playlist Hora da Naninha"></div><span class="number">Playlist 03</span><h3>Hora da Naninha</h3><p>Histórias narradas em áudio, acompanhadas por uma imagem parada.</p><div class="card-actions" data-actions="playlistNaninhaYoutube,playlistNaninhaSpotify" data-labels="YouTube,Spotify"></div></article>
         </div>
       </div>
     </section>
